@@ -12,7 +12,7 @@ function Decrease (item){
  setItem((prev)=>{return prev.filter((i)=> i.id !== item.id)})
 :setItem(Item.map(it=>{
   return it.id==item.id ? 
-  {id:item.id,data:item.data,quantity:(it.quantity-1)}
+  {id:item.id,data:item.data,price:(it.price-item.data.price).toFixed(2),quantity:(it.quantity-1)}
   :it}))  
 }
 
@@ -20,10 +20,10 @@ function AddItem (data){
  const exist =(Item.find(it=>it.data.id==data.id))
   console.log(exist)
   if(exist){
-    setItem((prev)=>{return[{...exist,quantity:(exist.quantity+1),...prev}]});
+    setItem((prev)=>{return[{...exist,price:(exist.price+data.price),quantity:(exist.quantity+1)},...prev]});
   }
   else{
-    setItem([{id:Math.random().toString(), data:data, quantity:1},...Item])
+    setItem([{id:Math.random().toString(), data:data,price:data.price, quantity:1},...Item])
   }
 }
     
@@ -62,7 +62,9 @@ function AddItem (data){
       </div>
       
     ))}
-
+<div>
+<h2 className="text-sm text-black font-bold mb-2">TOTAL:{Item.reduce((total,current)=>{return total+current.price},0)}</h2>
+</div>
   </div>
 </div>       
    
