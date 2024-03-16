@@ -7,13 +7,20 @@ function Home() {
     const [Data, setData]=useState([])
     const [Item, setItem]=useState([])
 
+function Decrease (item){
+  item.quantity == 1 ?
+ setItem((prev)=>{return prev.filter((i)=> i.id !== item.id)})
+:setItem(Item.map(it=>{
+  return it.id==item.id ? 
+  {id:item.id,data:item.data,quantity:(it.quantity-1)}
+  :it}))  
+}
 
 function AddItem (data){
-  let exist=[]
-  exist =(Item.find(it=>it.data.id==data.id))
+ const exist =(Item.find(it=>it.data.id==data.id))
   console.log(exist)
   if(exist){
-    setItem((prev)=>{return[{id:exist.id,data:exist.data,quantity:(exist.quantity+1),...prev}]});
+    setItem((prev)=>{return[{...exist,quantity:(exist.quantity+1),...prev}]});
   }
   else{
     setItem([{id:Math.random().toString(), data:data, quantity:1},...Item])
@@ -47,7 +54,11 @@ function AddItem (data){
          <img src={ia.data.image} className='object-scale-down overflow-hidden w-24 h-24 rounded-xl mx-auto'/>
          <h2 className="text-sm font-bold mb-2">{ia.data.title}</h2>
          <h2 className="text-sm font-bold mb-2">{ia.data.price}</h2>
-         <h2 className="text-sm font-bold mb-2">{ia.quantity}</h2>
+         <div className='flex ml-7'>
+         <button onClick={()=>{AddItem(ia.data)}}>+</button>
+         <h2 className="text-sm font-bold mb-2">QUANTITY: {ia.quantity}</h2>
+         <button onClick={()=>{Decrease(ia)}}>-</button>
+         </div>
       </div>
     ))}
   </div>
