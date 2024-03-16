@@ -9,8 +9,15 @@ function Home() {
 
 
 function AddItem (data){
-setItem((prevda)=>{return [{id:Math.random().toString(),data:data},...prevda]})
-console.log(Item)
+  let exist=[]
+  exist =(Item.find(it=>it.data.id==data.id))
+  console.log(exist)
+  if(exist){
+    setItem((prev)=>{return[{id:exist.id,data:exist.data,quantity:(exist.quantity+1),...prev}]});
+  }
+  else{
+    setItem([{id:Math.random().toString(), data:data, quantity:1},...Item])
+  }
 }
     
     useEffect(() => {
@@ -40,7 +47,7 @@ console.log(Item)
          <img src={ia.data.image} className='object-scale-down overflow-hidden w-24 h-24 rounded-xl mx-auto'/>
          <h2 className="text-sm font-bold mb-2">{ia.data.title}</h2>
          <h2 className="text-sm font-bold mb-2">{ia.data.price}</h2>
-
+         <h2 className="text-sm font-bold mb-2">{ia.quantity}</h2>
       </div>
     ))}
   </div>
