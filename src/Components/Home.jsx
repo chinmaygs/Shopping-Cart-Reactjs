@@ -12,7 +12,7 @@ function Decrease (item){
  setItem((prev)=>{return prev.filter((i)=> i.id !== item.id)})
 :setItem(Item.map(it=>{
   return it.id==item.id ? 
-  {id:item.id,data:item.data,quantity:(it.quantity-1)}
+  {id:item.id,data:item.data,price:(it.price-item.data.price).toFixed(2),quantity:(it.quantity-1)}
   :it}))  
 }
 
@@ -20,10 +20,10 @@ function AddItem (data){
  const exist =(Item.find(it=>it.data.id==data.id))
   console.log(exist)
   if(exist){
-    setItem((prev)=>{return[{...exist,quantity:(exist.quantity+1),...prev}]});
+    setItem((prev)=>{return[{...exist,price:(exist.price+exist.data.price),quantity:(exist.quantity+1),...prev}]});
   }
   else{
-    setItem([{id:Math.random().toString(), data:data, quantity:1},...Item])
+    setItem([{id:Math.random().toString(), data:data, price:data.price, quantity:1},...Item])
   }
 }
     
@@ -53,14 +53,18 @@ function AddItem (data){
       <div className="bg-orange-400 object-scale-down rounded-xl shadow-md box-content h-60 w-60 p-4 mx-2 my-2 flex-col text-center " key={ia.id}>
          <img src={ia.data.image} className='object-scale-down overflow-hidden w-24 h-24 rounded-xl mx-auto'/>
          <h2 className="text-sm font-bold mb-2">{ia.data.title}</h2>
-         <h2 className="text-sm font-bold mb-2">{ia.data.price}</h2>
+         <h2 className="text-sm font-bold mb-2">{ia.price}</h2>
          <div className='flex ml-7'>
          <button onClick={()=>{AddItem(ia.data)}}>+</button>
          <h2 className="text-sm font-bold mb-2">QUANTITY: {ia.quantity}</h2>
          <button onClick={()=>{Decrease(ia)}}>-</button>
          </div>
       </div>
+      
     ))}
+        <div>
+         <h2 className="text-sm text-black font-bold mb-2">TOTAL:{Item.reduce((total,current)=>{return total+current.price},0)}</h2>
+         </div>
   </div>
 </div>       
    
