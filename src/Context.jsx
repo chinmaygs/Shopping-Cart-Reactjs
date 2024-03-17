@@ -5,14 +5,25 @@ export const Contextpro = createContext(null)
 
 function reducer(state,action){
     switch(action.type){
+      case "ADD":
+        const exist=state.find(it=>it.data.id==action.value.id)
+        console.log(exist)  
+        if(exist)
+      return(state.map(item=>{return item.data.id==action.value.id ? {id:item.id,data:item.data,price:(item.price+item.data.price),quantity:(item.quantity+1)}
+:{...item}}))
+  else
+    return [{id:Math.random().toString(), data:action.value, price:action.value.price,quantity:1},...state]
+  
+      default:
+        return state
     }
 }
 
 function Context({children}) {
-  
+  const [Item,dispatch]=useReducer(reducer,[])
   return (
     <div>
-<Contextpro.Provider value={{}}>{children}</Contextpro.Provider>
+<Contextpro.Provider value={{Item,dispatch}}>{children}</Contextpro.Provider>
     </div>
   )
 }

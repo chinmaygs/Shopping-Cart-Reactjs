@@ -13,13 +13,13 @@ function App() {
       <Navigation/>
       </div>
       <div className=''>
-   
+   <Context>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/Contact' element={<Contact/>}/>
         <Route path='/Cart' element={<Cart/>}/>
       </Routes>
-    
+      </Context>
       </div>
     </div>
   )

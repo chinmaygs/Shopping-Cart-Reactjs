@@ -5,8 +5,7 @@ import {Contextpro} from'../Context'
 
 function Home() {
     const [Data, setData]=useState([])
-    const [Item, setItem]=useState([])
-
+  const {Item, dispatch} =useContext(Contextpro)
 function Decrease (item){
   item.quantity == 1 ?
  setItem((prev)=>{return prev.filter((i)=> i.id !== item.id)})
@@ -17,14 +16,7 @@ function Decrease (item){
 }
 
 function AddItem (data){
-  const exist=Item.find(it=>it.data.id==data.id)
-  console.log(exist)
-  if(exist){
-setItem(Item.map(item=>{return item.data.id==data.id ? {id:item.id,data:item.data,price:(item.price+item.data.price),quantity:(item.quantity+1)}
-:{...item}}))}
-  else{
-    setItem([{id:Math.random().toString(), data:data, price:data.price,quantity:1},...Item])
-  }
+  dispatch ({type:"ADD",value:data})
 }
     
     useEffect(() => {
