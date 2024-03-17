@@ -1,10 +1,10 @@
 import React from 'react'
 import {Routes, Route} from 'react-router-dom'
-import Contact from './Components/Contact'
-import Home from './Components/Home'
-import Cart from './Components/Cart'
+import Contact from './Components/Contact/Contact'
+import Home from './Components/Home/Home'
+import Cart from './Components/Cart/Cart'
 import Navigation from './Navigation/Navigation'
-import Context from './Context'
+import Context from './Context/Context'
 
 function App() {
   return (
