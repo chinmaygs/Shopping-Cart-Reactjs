@@ -7,12 +7,7 @@ function Home() {
     const [Data, setData]=useState([])
   const {Item, dispatch} =useContext(Contextpro)
 function Decrease (item){
-  item.quantity == 1 ?
- setItem((prev)=>{return prev.filter((i)=> i.id !== item.id)})
-:setItem(Item.map(it=>{
-  return it.id==item.id ? 
-  {id:item.id,data:item.data,price:(it.price-item.data.price).toFixed(2),quantity:(it.quantity-1)}
-  :it}))  
+  dispatch({type:"DECREASE",value:item})
 }
 
 function AddItem (data){

@@ -13,7 +13,14 @@ function reducer(state,action){
 :{...item}}))
   else
     return [{id:Math.random().toString(), data:action.value, price:action.value.price,quantity:1},...state]
-  
+  case "DECREASE":
+    if (action.value.quantity == 1 )
+     return (state.filter((i)=> i.id !== action.value.id))
+    else
+    return (state.map(it=>{
+      return it.id==action.value.id ? 
+      {id:action.value.id,data:action.value.data,price:(it.price-action.value.data.price).toFixed(2),quantity:(it.quantity-1)}
+      :{...it}}) )
       default:
         return state
     }
