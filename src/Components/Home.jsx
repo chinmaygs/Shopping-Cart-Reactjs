@@ -17,13 +17,13 @@ function Decrease (item){
 }
 
 function AddItem (data){
- const exist =(Item.find(it=>it.data.id==data.id))
+  const exist=Item.find(it=>it.data.id==data.id)
   console.log(exist)
   if(exist){
-    setItem((prev)=>{return[{...exist,price:(exist.price+data.price),quantity:(exist.quantity+1)},...prev]});
-  }
+setItem(Item.map(item=>{return item.data.id==data.id ? {id:item.id,data:item.data,price:(item.price+item.data.price),quantity:(item.quantity+1)}
+:{...item}}))}
   else{
-    setItem([{id:Math.random().toString(), data:data,price:data.price, quantity:1},...Item])
+    setItem([{id:Math.random().toString(), data:data, price:data.price,quantity:1},...Item])
   }
 }
     
