@@ -1,8 +1,12 @@
 # React + Vite
+# Shopping Cart UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is an User Interface for an Shopping Cart application. It is built using React and Tailwind Css.
 
-Currently, two official plugins are available:
+# HomePage
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Home](https://github.com/chinmaygs/Shopping-Cart-Reactjs/assets/164546850/6e8b61df-e84b-4166-9491-23864806405a)
+
+# CartPage
+
+![Cart](https://github.com/chinmaygs/Shopping-Cart-Reactjs/assets/164546850/2cb95135-dc00-48a3-969e-0aef93f77589)
